@@ -1,6 +1,6 @@
 [submodule "LiveSplit/Components/LiveSplit.CurrentComparison"]
 	path = components/LiveSplit.CurrentComparison
-	url = https://github.com/LiveSplit/LiveSplit.CurrentComparison.git
+	url = https://github.com/wzxnb2333/LiveSplit.CurrentComparison.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Delta"]
 	path = components/LiveSplit.Delta
@@ -8,7 +8,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.DetailedTimer"]
 	path = components/LiveSplit.DetailedTimer
-	url = https://github.com/LiveSplit/LiveSplit.DetailedTimer.git
+	url = https://github.com/wzxnb2333/LiveSplit.DetailedTimer.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Graph"]
 	path = components/LiveSplit.Graph
@@ -28,11 +28,11 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PreviousSegment"]
 	path = components/LiveSplit.PreviousSegment
-	url = https://github.com/LiveSplit/LiveSplit.PreviousSegment.git
+	url = https://github.com/wzxnb2333/LiveSplit.PreviousSegment.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.RunPrediction"]
 	path = components/LiveSplit.RunPrediction
-	url = https://github.com/LiveSplit/LiveSplit.RunPrediction.git
+	url = https://github.com/wzxnb2333/LiveSplit.RunPrediction.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ScriptableAutoSplit"]
 	path = components/LiveSplit.ScriptableAutoSplit
@@ -44,7 +44,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Splits"]
 	path = components/LiveSplit.Splits
-	url = https://github.com/LiveSplit/LiveSplit.Splits.git
+	url = https://github.com/wzxnb2333/LiveSplit.Splits.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.SumOfBest"]
 	path = components/LiveSplit.SumOfBest
@@ -56,7 +56,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Timer"]
 	path = components/LiveSplit.Timer
-	url = https://github.com/LiveSplit/LiveSplit.Timer.git
+	url = https://github.com/wzxnb2333/LiveSplit.Timer.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Title"]
 	path = components/LiveSplit.Title
@@ -64,14 +64,14 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Video"]
 	path = components/LiveSplit.Video
-	url = https://github.com/LiveSplit/LiveSplit.Video.git
+	url = https://github.com/wzxnb2333/LiveSplit.Video.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Subsplits"]
 	path = components/LiveSplit.Subsplits
-	url = https://github.com/LiveSplit/LiveSplit.Subsplits
+	url = https://github.com/wzxnb2333/LiveSplit.Subsplits.git
 [submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
 	path = components/LiveSplit.WorldRecord
-	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
+	url = https://github.com/wzxnb2333/LiveSplit.WorldRecord.git
 [submodule "LiveSplit/Libs/SpeedrunComSharp"]
 	path = lib/SpeedrunComSharp
 	url = https://github.com/LiveSplit/SpeedrunComSharp.git
@@ -83,10 +83,10 @@
 	url = https://github.com/LiveSplit/LiveSplit.Counter.git
 [submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
 	path = components/LiveSplit.BlankSpace
-	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
+	url = https://github.com/wzxnb2333/LiveSplit.BlankSpace.git
 [submodule "LiveSplit/Components/LiveSplit.Racetime"]
 	path = components/LiveSplit.Racetime
-	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
+	url = https://github.com/wzxnb2333/LiveSplit.Racetime.git
 	branch = stable
 [submodule "LiveSplit/Components/LiveSplit.AutoSplittingRuntime"]
 	path = components/LiveSplit.AutoSplittingRuntime
@@ -99,4 +99,4 @@
 	url = https://github.com/therungg/LiveSplit.TheRun
 [submodule "components/LiveSplit.ComparisonTime"]
 	path = components/LiveSplit.ComparisonTime
-	url = https://github.com/LiveSplit/LiveSplit.ComparisonTime.git
+	url = https://github.com/wzxnb2333/LiveSplit.ComparisonTime.git

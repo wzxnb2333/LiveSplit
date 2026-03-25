@@ -1,14 +1,24 @@
-﻿<h1> <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/res/Icon.svg" alt="LiveSplit" height="42" align="top"/> LiveSplit</h1>
+﻿<h1> <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/res/Icon.svg" alt="LiveSplit" height="42" align="top"/> LiveSplit Multilingual</h1>
 
-[![GitHub release](https://img.shields.io/github/release/LiveSplit/LiveSplit.svg)](https://github.com/LiveSplit/LiveSplit/releases/latest)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LICENSE)
-[![Build Status](https://github.com/LiveSplit/LiveSplit/workflows/CI/badge.svg)](https://github.com/LiveSplit/LiveSplit/actions)
-[![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues)
+[![GitHub release](https://img.shields.io/github/release/wzxnb2333/LiveSplit.svg)](https://github.com/wzxnb2333/LiveSplit/releases/latest)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/wzxnb2333/LiveSplit/multilingual/LICENSE)
+[![Build Status](https://github.com/wzxnb2333/LiveSplit/workflows/CI/badge.svg)](https://github.com/wzxnb2333/LiveSplit/actions)
+[![GitHub issues](https://img.shields.io/github/issues/wzxnb2333/LiveSplit.svg?style=plastic)](https://github.com/wzxnb2333/LiveSplit/issues)
 
 LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">
   <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit.github.io/master/images/livesplittimer.png" alt="LiveSplit"/>
 </p>
+
+## This Fork
+
+This repository is a multilingual fork of [LiveSplit/LiveSplit](https://github.com/LiveSplit/LiveSplit).
+
+- It is focused on UI localization and translated builds.
+- The current multilingual branch includes external locale files, runtime language switching, and Simplified Chinese coverage.
+- Releases published from this fork are intended for end users who want localized LiveSplit builds.
+
+If you are looking for the upstream project, its issue tracker, or its official releases, use the original repository linked above.
 
 ## Features
 
@@ -34,16 +44,20 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 ## Contributing
 
-We need your help!
+This fork accepts changes related to multilingual support and localized releases.
 
-You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
+If you want to contribute to this fork:
 
- 1. [Fork](https://github.com/LiveSplit/LiveSplit/fork) the project
+ 1. Fork `wzxnb2333/LiveSplit`
  2. Clone your forked repo: `git clone --recursive https://github.com/YourUsername/LiveSplit.git`
- 3. Create your feature/bugfix branch: `git checkout -b new-feature`
- 4. Commit your changes to your new branch: `git commit -am 'Add a new feature'`
- 5. Push to the branch: `git push origin new-feature`
- 6. Create a new Pull Request!
+ 3. Create your feature/bugfix branch
+ 4. Commit your changes
+ 5. Push to the branch
+ 6. Open a Pull Request against this fork
+
+If you want to contribute directly to upstream LiveSplit, please use the original repository instead:
+
+- [LiveSplit/LiveSplit](https://github.com/LiveSplit/LiveSplit)
 
 ## Compiling
 
@@ -57,7 +71,7 @@ To use Visual Studio, you must install a version that supports the .NET SDK vers
 
 ## Common Compiling Issues
 1. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
- - Cloning for the first time: `git clone --recursive https://github.com/LiveSplit/LiveSplit.git`
+ - Cloning for the first time: `git clone --recursive https://github.com/wzxnb2333/LiveSplit.git`
  - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
 ## Auto Splitters
