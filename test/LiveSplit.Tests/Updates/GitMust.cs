@@ -25,4 +25,14 @@ public class GitMust
         Assert.Equal(2, commitsSinceLastTag);
         Assert.True(isDirty);
     }
+
+    [Theory]
+    [InlineData("codex/multilingual-fork", null)]
+    [InlineData("refs/heads/codex/multilingual-fork", null)]
+    [InlineData("codex/feature/test", "feature/test")]
+    [InlineData("release/1.8.37", "release/1.8.37")]
+    public void NormalizeBranchForDisplay(string branch, string expected)
+    {
+        Assert.Equal(expected, Git.NormalizeBranch(branch));
+    }
 }

@@ -31,7 +31,7 @@ public static class Git
     public static readonly string Branch =
         string.IsNullOrWhiteSpace(GitInfo.branch)
         ? null
-        : GitInfo.branch.Replace("\r", "").Replace("\n", "")
+        : NormalizeBranch(GitInfo.branch.Replace("\r", "").Replace("\n", ""))
     ;
     public static readonly Uri RevisionUri =
         LastTag == null || Revision == null
@@ -79,5 +79,32 @@ public static class Git
 
         string lastTag = describe[..commitsSeparator];
         return (lastTag, commitsSinceLastTag, isDirty);
+    }
+
+    internal static string NormalizeBranch(string branch)
+    {
+        if (string.IsNullOrWhiteSpace(branch))
+        {
+            return null;
+        }
+
+        if (branch.StartsWith("refs/heads/", StringComparison.Ordinal))
+        {
+            branch = branch["refs/heads/".Length..];
+        }
+
+        if (branch.StartsWith("codex/", StringComparison.Ordinal))
+        {
+            branch = branch["codex/".Length..];
+        }
+
+        return branch switch
+        {
+            "master" => null,
+            "HEAD" => null,
+            "multilingual" => null,
+            "multilingual-fork" => null,
+            _ => branch
+        };
     }
 }
