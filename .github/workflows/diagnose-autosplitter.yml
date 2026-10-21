@@ -1,0 +1,33 @@
+name: Diagnose AutoSplitter CI timeout
+on:
+  push:
+    branches:
+      - codex/diagnose-autosplitter-ci
+jobs:
+  diagnose:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.x'
+      - name: Build the failing merge with diagnostics
+        run: dotnet build -v m -c Release -p:DebugType=None .\LiveSplit.slnx
+      - name: Repeat the original tests with wait diagnostics
+        shell: pwsh
+        run: |
+          for ($iteration = 1; $iteration -le 12; $iteration++) {
+            Write-Output "Diagnostic iteration $iteration"
+            dotnet test -v m -c Release --no-restore --no-build .\LiveSplit.slnx --logger 'console;verbosity=normal' --logger "trx;LogFileName=diagnostic-$iteration.trx" --results-directory diagnostic-results
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Upload diagnostic output
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: autosplitter-diagnostics
+          path: diagnostic-results

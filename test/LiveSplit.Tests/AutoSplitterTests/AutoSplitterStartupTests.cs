@@ -27,6 +27,10 @@ public class AutoSplitterStartupCollection;
 [Collection("AutoSplitter startup")]
 public class AutoSplitterStartupTests
 {
+    private readonly Xunit.Abstractions.ITestOutputHelper output;
+
+    public AutoSplitterStartupTests(Xunit.Abstractions.ITestOutputHelper output) => this.output = output;
+
     [Fact]
     public void PublishListBeforeNotifyingConsumers()
     {
@@ -264,18 +268,23 @@ public class AutoSplitterStartupTests
                 _ = editor.Handle;
                 Application.DoEvents();
                 var click = typeof(RunEditorDialog).GetMethod("btnActivate_Click", BindingFlags.Instance | BindingFlags.NonPublic);
+                string Snapshot() => $"running={running}, cancel={cancel}, phase={state.CurrentPhase}, enabled={state.Settings.ActiveAutoSplitters.Contains(run.GameName)}, active={splitter.IsActivated}, editorTask={typeof(RunEditorDialog).GetField("_autoSplitterActivation", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(editor)}, preparation={typeof(AutoSplitter).GetField("_preparation", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(splitter)}, requested={server.Requested.Task.Status}, server={server.Response.Status}, context={SynchronizationContext.Current?.GetType().Name}, game={run.GameName}, text={Field<ComboBox>(editor, "cbxGameName").Text}";
+                output.WriteLine("Before click: " + Snapshot());
                 var watch = Stopwatch.StartNew();
                 click.Invoke(editor, [editor, EventArgs.Empty]);
                 watch.Stop();
-                PumpUntil(() => server.Requested.Task.IsCompleted);
+                output.WriteLine("After click: " + Snapshot());
+                PumpUntil(() => server.Requested.Task.IsCompleted, "HTTP request: " + Snapshot());
+                output.WriteLine("Request received: " + Snapshot());
                 factory.AutoSplitters = new Dictionary<string, AutoSplitter> { ["test game"] = splitter };
                 Application.DoEvents();
                 Task activation = splitter.ActivateAsync(state, allowWhileRunning: true);
                 Assert.Equal("Deactivate", Field<Button>(editor, "btnActivate").Text);
                 if (cancel) click.Invoke(editor, [editor, EventArgs.Empty]);
                 server.Release.TrySetResult(true);
-                PumpUntil(() => activation.IsCompleted);
+                PumpUntil(() => activation.IsCompleted, "Activation completion: " + Snapshot());
                 activation.GetAwaiter().GetResult();
+                output.WriteLine("Completed: " + Snapshot());
 
                 Assert.True(watch.Elapsed < TimeSpan.FromSeconds(1), "The activation button blocked on the network.");
                 Assert.Equal(!cancel, state.Settings.ActiveAutoSplitters.Contains("Test Game"));
@@ -333,13 +342,14 @@ public class AutoSplitterStartupTests
         public TaskCompletionSource<bool> Requested { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
         public TaskCompletionSource<bool> Release { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
         public string Url { get; }
+        public Task Response { get; }
 
         public DelayedServer(int status = 200)
         {
             this.status = status;
             listener.Start();
             Url = $"http://127.0.0.1:{((IPEndPoint)listener.LocalEndpoint).Port}/test.asl";
-            _ = Task.Run(RespondAsync);
+            Response = Task.Run(RespondAsync);
         }
 
         private async Task RespondAsync()
@@ -367,7 +377,7 @@ public class AutoSplitterStartupTests
         }
     }
 
-    private static void PumpUntil(Func<bool> condition)
+    private static void PumpUntil(Func<bool> condition, string diagnostic = null, [System.Runtime.CompilerServices.CallerLineNumber] int line = 0)
     {
         DateTime deadline = DateTime.UtcNow.AddSeconds(8);
         while (!condition() && DateTime.UtcNow < deadline)
@@ -375,7 +385,7 @@ public class AutoSplitterStartupTests
             Application.DoEvents();
             Thread.Yield();
         }
-        Assert.True(condition(), "The UI did not observe the background update.");
+        Assert.True(condition(), $"The UI did not observe the background update. Line {line}. {diagnostic}");
     }
 
     private static void OnStaThread(Action action)
