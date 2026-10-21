@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'codex/diagnose-autosplitter-ci'
     tags:
       - '*'
 
